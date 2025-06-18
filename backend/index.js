@@ -13,7 +13,15 @@ const PORT = process.env.PORT || 5000;
 const JWT_SECRET = process.env.JWT_SECRET;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: [
+    "https://attendance-mspc.vercel.app/", // Your frontend
+   // For local development
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+  credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
 // User schema and model
 const userSchema = new mongoose.Schema({
@@ -311,11 +319,12 @@ app.get('/holidays', authenticateToken, async (req, res) => {
 
 // Example route
 app.get('/', (req, res) => {
-  res.send('Server is running!');
+  res.send('✅Server is running!');
 });
 
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
+module.exports = app;
+module.exports.handler = serverless(app);
