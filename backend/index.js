@@ -15,7 +15,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 app.use(express.json());
 app.use(cors({
   origin: [
-    "https://attendance-mspc.vercel.app/", // Your frontend
+    "https://attendance-mspc.vercel.app", // Your frontend
    // For local development
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
