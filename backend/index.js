@@ -23,6 +23,7 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
 app.options("*", cors());
+
 // User schema and model
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
